@@ -1,10 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import React from 'react'
-function App() {
-  return <h1>Hello from React</h1>;
-}
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-export default App
+import Navbar from "./components/Navbar";
+
+const App = () => {
+  return (
+    <Router>
+      {/* Navbar stays at the top on all pages */}
+      <Navbar />
+    </Router>
+  );
+};
+
+export default App;
