@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Navbar from "./components/Navbar";
 import FiltersDatePicker from "./components/FiltersDatePicker";
 import MetricsOverview from "./components/MetricsOverview";
+import AnimationsShowcase from "./components/AnimationsShowcase";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
         
         {/* Dashboard Cards */}
         <MetricsOverview />
+        
+        {/* Animations & Interactivity Showcase */}
+        <AnimationsShowcase />
       </main>
     </Router>
   );
