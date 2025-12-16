@@ -1,4 +1,5 @@
 {
     "github.copilot.chat.anthropic.tools.websearch.enabled": true,
-    "github.copilot.chat.codesearch.enabled": true
+    "github.copilot.chat.codesearch.enabled": true,
+    "javascript.autoClosingTags": false
 }
