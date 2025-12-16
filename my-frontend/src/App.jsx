@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Navbar from "./Components/Navbar";
-import RefinedFilters from "./Components/RefinedFilters";
 import KeyMetricsCards from "./Components/KeyMetricsCards";
+import RefinedFilters from "./Components/RefinedFilters";
 import { FilterProvider } from "./contexts/FilterContext";
 
 const App = () => {
