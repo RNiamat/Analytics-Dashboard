@@ -1,77 +1,147 @@
 import React from 'react';
-import { Users, DollarSign, TrendingUp, ShoppingCart } from 'lucide-react';
+import { Users, DollarSign, TrendingUp, ShoppingCart, ArrowUp, ArrowDown, Activity, Target } from 'lucide-react';
+import { useFilters } from '../contexts/FilterContext';
 
 const KeyMetricsCards = () => {
-  const metrics = [
-    {
-      name: 'Users',
-      value: '12,430',
-      trend: 12.5,
-      icon: Users
-    },
-    {
-      name: 'Revenue',
-      value: '$45,200',
-      trend: -3.2,
-      icon: DollarSign
-    },
-    {
-      name: 'Growth',
-      value: '8.7%',
-      trend: 15.8,
-      icon: TrendingUp
-    },
-    {
-      name: 'Orders',
-      value: '1,847',
-      trend: 7.3,
-      icon: ShoppingCart
+  const { metrics, category } = useFilters();
+
+  // Dynamic metrics based on category
+  const getMetricsConfig = () => {
+    switch (category) {
+      case 'Sales':
+        return [
+          {
+            name: 'Total Revenue',
+            value: `$${metrics.totalValue.toLocaleString()}`,
+            trend: metrics.trend,
+            icon: DollarSign,
+          },
+          {
+            name: 'Orders',
+            value: metrics.totalCount.toLocaleString(),
+            trend: metrics.trend + 2,
+            icon: ShoppingCart,
+          },
+          {
+            name: 'Avg Order Value',
+            value: `$${metrics.averageValue.toLocaleString()}`,
+            trend: metrics.trend - 1,
+            icon: TrendingUp,
+          },
+          {
+            name: 'Growth Rate',
+            value: `${Math.abs(metrics.trend).toFixed(1)}%`,
+            trend: metrics.trend,
+            icon: Activity,
+          },
+        ];
+      case 'Users':
+        return [
+          {
+            name: 'Active Users',
+            value: metrics.totalValue.toLocaleString(),
+            trend: metrics.trend,
+            icon: Users,
+          },
+          {
+            name: 'New Signups',
+            value: metrics.totalCount.toLocaleString(),
+            trend: metrics.trend + 3,
+            icon: Target,
+          },
+          {
+            name: 'Avg Engagement',
+            value: `${metrics.averageValue.toLocaleString()}`,
+            trend: metrics.trend - 2,
+            icon: Activity,
+          },
+          {
+            name: 'Growth Rate',
+            value: `${Math.abs(metrics.trend).toFixed(1)}%`,
+            trend: metrics.trend,
+            icon: TrendingUp,
+          },
+        ];
+      case 'Marketing':
+        return [
+          {
+            name: 'Campaign Spend',
+            value: `$${metrics.totalValue.toLocaleString()}`,
+            trend: metrics.trend,
+            icon: DollarSign,
+          },
+          {
+            name: 'Impressions',
+            value: `${(metrics.totalCount / 1000).toFixed(1)}K`,
+            trend: metrics.trend + 5,
+            icon: Activity,
+          },
+          {
+            name: 'Avg Cost',
+            value: `$${metrics.averageValue.toLocaleString()}`,
+            trend: metrics.trend - 3,
+            icon: Target,
+          },
+          {
+            name: 'ROI',
+            value: `${(Math.abs(metrics.trend) * 2).toFixed(1)}%`,
+            trend: metrics.trend,
+            icon: TrendingUp,
+          },
+        ];
+      default:
+        return [];
     }
-  ];
+  };
+
+  const metricsConfig = getMetricsConfig();
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {metrics.map((metric, index) => {
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+        {metricsConfig.map((metric, index) => {
           const IconComponent = metric.icon;
           const isPositive = metric.trend > 0;
-          
+
           return (
             <div
               key={index}
-              className="group bg-white rounded-lg shadow-md border border-gray-200 p-6 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-b-4 hover:border-b-indigo-500"
+              className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 transition-all duration-500 hover:shadow-theme-md transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-4"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Icon and Trend */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="p-3 rounded-lg bg-gray-100 group-hover:bg-indigo-100 transition-colors duration-300">
-                  <IconComponent className="w-6 h-6 text-gray-600 group-hover:text-indigo-600 transition-colors duration-300" />
-                </div>
-                <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                  isPositive 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-red-100 text-red-700'
+              {/* Icon */}
+              <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 ${category === 'Sales' ? 'bg-blue-100' :
+                  category === 'Users' ? 'bg-green-100' :
+                    'bg-purple-100'
                 }`}>
-                  <span>{isPositive ? '↑' : '↓'}</span>
-                  <span>{Math.abs(metric.trend)}%</span>
-                </div>
-              </div>
-              
-              {/* Metric Name and Value */}
-              <div className="mb-3">
-                <h3 className="text-sm font-medium text-gray-600 mb-1">
-                  {metric.name}
-                </h3>
-                <p className="text-2xl font-bold text-gray-900">
-                  {metric.value}
-                </p>
+                <IconComponent className={`size-6 transition-all duration-500 ${category === 'Sales' ? 'text-blue-600' :
+                    category === 'Users' ? 'text-green-600' :
+                      'text-purple-600'
+                  }`} />
               </div>
 
-              {/* Hover Text - Non-overlapping reveal */}
-              <div className="h-0 overflow-hidden opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300">
-                <div className="pt-2 border-t border-gray-100">
-                  <p className="text-xs text-gray-500 font-medium">
-                    Compared to last week {isPositive ? '+' : ''}{metric.trend}%
-                  </p>
+              {/* Metric Value and Trend */}
+              <div className="mt-5 flex items-end justify-between">
+                <div>
+                  <span className="text-theme-sm text-gray-500">
+                    {metric.name}
+                  </span>
+                  <h4 className="mt-2 text-title-sm font-bold text-gray-800 transition-all duration-500">
+                    {metric.value}
+                  </h4>
+                </div>
+
+                {/* Trend Badge */}
+                <div className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-theme-xs font-medium transition-all duration-500 ${isPositive
+                    ? 'bg-success-50 text-success-700'
+                    : 'bg-error-50 text-error-700'
+                  }`}>
+                  {isPositive ? (
+                    <ArrowUp className="size-3.5" />
+                  ) : (
+                    <ArrowDown className="size-3.5" />
+                  )}
+                  {Math.abs(metric.trend).toFixed(1)}%
                 </div>
               </div>
             </div>

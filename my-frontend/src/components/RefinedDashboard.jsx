@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import KeyMetricsCards from './KeyMetricsCards';
-import RefinedFilters from './RefinedFilters';
+import KeyMetricsCards from "./components/KeyMetricsCards";
+import RefinedFilters from "./components/RefinedFilters";
 import AnimationsDemo from './AnimationsDemo';
 
 const RefinedDashboard = () => {
