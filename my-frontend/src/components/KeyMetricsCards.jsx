@@ -108,19 +108,19 @@ const KeyMetricsCards = () => {
           return (
             <div
               key={index}
-              className="group relative flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-brand-100 cursor-pointer overflow-hidden"
+              className="group relative flex flex-col justify-between rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-brand-100 dark:hover:border-brand-900 cursor-pointer overflow-hidden"
             >
               {/* Hover Bottom Border Indicator */}
               <div className="absolute bottom-0 left-0 h-1 w-full bg-brand-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
 
               {/* Top Row: Icon and Trend */}
               <div className="flex items-start justify-between mb-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-50/80 text-gray-500 transition-colors duration-300 group-hover:bg-brand-50 group-hover:text-brand-600">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-50/80 dark:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors duration-300 group-hover:bg-brand-50 dark:group-hover:bg-brand-900/20 group-hover:text-brand-600 dark:group-hover:text-brand-400">
                   <IconComponent className="h-6 w-6" />
                 </div>
 
                 <div className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium 
-                  ${isPositive ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`
+                  ${isPositive ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400' : 'bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400'}`
                 }>
                   {isPositive ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
                   {Math.abs(metric.trend).toFixed(1)}%
@@ -129,15 +129,15 @@ const KeyMetricsCards = () => {
 
               {/* Middle Row: Name and Value */}
               <div>
-                <h3 className="text-sm font-medium text-gray-500 mb-1">{metric.name}</h3>
-                <div className="text-2xl font-bold text-gray-900">{metric.value}</div>
+                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">{metric.name}</h3>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{metric.value}</div>
               </div>
 
               {/* Bottom Row: Comparison Text - Reveals on Hover */}
-              <div className="max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-20 group-hover:opacity-100 group-hover:mt-4 group-hover:pt-3 group-hover:border-t group-hover:border-gray-50">
-                <div className="flex items-center text-xs text-gray-500">
+              <div className="max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-20 group-hover:opacity-100 group-hover:mt-4 group-hover:pt-3 group-hover:border-t group-hover:border-gray-50 dark:group-hover:border-gray-800">
+                <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
                   <span>Compared to last week</span>
-                  <span className={`ml-1 font-medium ${isPositive ? 'text-emerald-600' : 'text-rose-600'}`}>
+                  <span className={`ml-1 font-medium ${isPositive ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
                     {isPositive ? '+' : ''}{metric.trend}%
                   </span>
                 </div>

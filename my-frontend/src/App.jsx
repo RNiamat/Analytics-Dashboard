@@ -7,23 +7,27 @@ import RefinedFilters from "./components/RefinedFilters";
 import DataTable from "./components/DataTable";
 import { FilterProvider } from "./contexts/FilterContext";
 
+import { ThemeProvider } from "./contexts/ThemeContext";
+
 const App = () => {
   return (
     <Router>
-      <FilterProvider>
-        <Layout>
-          {/* Key Metrics Cards */}
-          <KeyMetricsCards />
+      <ThemeProvider>
+        <FilterProvider>
+          <Layout>
+            {/* Key Metrics Cards */}
+            <KeyMetricsCards />
 
-          {/* Filters positioned above dashboard content */}
-          <RefinedFilters />
+            {/* Filters positioned above dashboard content */}
+            <RefinedFilters />
 
-          {/* Data Table */}
-          <div className="mt-8">
-            <DataTable />
-          </div>
-        </Layout>
-      </FilterProvider>
+            {/* Data Table */}
+            <div className="mt-8">
+              <DataTable />
+            </div>
+          </Layout>
+        </FilterProvider>
+      </ThemeProvider>
     </Router>
   );
 };
