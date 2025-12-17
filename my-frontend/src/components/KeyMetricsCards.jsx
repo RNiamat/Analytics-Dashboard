@@ -96,8 +96,10 @@ const KeyMetricsCards = () => {
 
   const metricsConfig = getMetricsConfig();
 
+  console.log('Metrics:', metrics);
+
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-6 relative z-0">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
         {metricsConfig.map((metric, index) => {
           const IconComponent = metric.icon;
@@ -106,42 +108,38 @@ const KeyMetricsCards = () => {
           return (
             <div
               key={index}
-              className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 transition-all duration-500 hover:shadow-theme-md transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-4"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group relative flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-brand-100 cursor-pointer overflow-hidden"
             >
-              {/* Icon */}
-              <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 ${category === 'Sales' ? 'bg-blue-100' :
-                  category === 'Users' ? 'bg-green-100' :
-                    'bg-purple-100'
-                }`}>
-                <IconComponent className={`size-6 transition-all duration-500 ${category === 'Sales' ? 'text-blue-600' :
-                    category === 'Users' ? 'text-green-600' :
-                      'text-purple-600'
-                  }`} />
-              </div>
+              {/* Hover Bottom Border Indicator */}
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-brand-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
 
-              {/* Metric Value and Trend */}
-              <div className="mt-5 flex items-end justify-between">
-                <div>
-                  <span className="text-theme-sm text-gray-500">
-                    {metric.name}
-                  </span>
-                  <h4 className="mt-2 text-title-sm font-bold text-gray-800 transition-all duration-500">
-                    {metric.value}
-                  </h4>
+              {/* Top Row: Icon and Trend */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-50/80 text-gray-500 transition-colors duration-300 group-hover:bg-brand-50 group-hover:text-brand-600">
+                  <IconComponent className="h-6 w-6" />
                 </div>
 
-                {/* Trend Badge */}
-                <div className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-theme-xs font-medium transition-all duration-500 ${isPositive
-                    ? 'bg-success-50 text-success-700'
-                    : 'bg-error-50 text-error-700'
-                  }`}>
-                  {isPositive ? (
-                    <ArrowUp className="size-3.5" />
-                  ) : (
-                    <ArrowDown className="size-3.5" />
-                  )}
+                <div className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium 
+                  ${isPositive ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`
+                }>
+                  {isPositive ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
                   {Math.abs(metric.trend).toFixed(1)}%
+                </div>
+              </div>
+
+              {/* Middle Row: Name and Value */}
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-1">{metric.name}</h3>
+                <div className="text-2xl font-bold text-gray-900">{metric.value}</div>
+              </div>
+
+              {/* Bottom Row: Comparison Text - Reveals on Hover */}
+              <div className="max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-20 group-hover:opacity-100 group-hover:mt-4 group-hover:pt-3 group-hover:border-t group-hover:border-gray-50">
+                <div className="flex items-center text-xs text-gray-500">
+                  <span>Compared to last week</span>
+                  <span className={`ml-1 font-medium ${isPositive ? 'text-emerald-600' : 'text-rose-600'}`}>
+                    {isPositive ? '+' : ''}{metric.trend}%
+                  </span>
                 </div>
               </div>
             </div>
