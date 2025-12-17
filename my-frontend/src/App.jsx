@@ -1,26 +1,28 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Navbar from "./Components/Navbar";
-import KeyMetricsCards from "./Components/KeyMetricsCards";
-import RefinedFilters from "./Components/RefinedFilters";
+import Layout from "./components/Layout";
+import KeyMetricsCards from "./components/KeyMetricsCards";
+import RefinedFilters from "./components/RefinedFilters";
+import DataTable from "./components/DataTable";
 import { FilterProvider } from "./contexts/FilterContext";
 
 const App = () => {
   return (
     <Router>
       <FilterProvider>
-        {/* Navbar stays at the top on all pages */}
-        <Navbar />
+        <Layout>
+          {/* Key Metrics Cards */}
+          <KeyMetricsCards />
 
-        {/* Main Dashboard Content */}
-        <main className="min-h-screen bg-gray-50 font-sans">
           {/* Filters positioned above dashboard content */}
           <RefinedFilters />
 
-          {/* Key Metrics Cards */}
-          <KeyMetricsCards />
-        </main>
+          {/* Data Table */}
+          <div className="mt-8">
+            <DataTable />
+          </div>
+        </Layout>
       </FilterProvider>
     </Router>
   );
