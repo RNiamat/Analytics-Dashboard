@@ -1,6 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
 
+@theme {
+  /* Brand Colors (Indigo) */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+
+  /* Error Colors (Red) */
+  --color-error-50: #fef2f2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+
+  /* Success Colors (Emerald) */
+  --color-success-50: #ecfdf5;
+  --color-success-700: #047857;
+
+  /* Typography */
+  --text-theme-xs: 0.75rem; 
+  --text-theme-sm: 0.875rem;
+  --text-theme-xl: 1.25rem;
+  
+  /* Shadows */
+  --shadow-theme-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-theme-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-theme-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-theme-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 @layer base {
   body {
     @apply relative text-base font-normal bg-gray-50 font-sans;

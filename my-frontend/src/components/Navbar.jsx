@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Bell, Layout, Settings, FileText, User, LogOut, ChevronDown, Award } from 'lucide-react';
+import { Bell, Layout, Settings, FileText, User, LogOut, ChevronDown, Award, Menu } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick }) => {
     const [activeTab, setActiveTab] = useState('Overview');
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
@@ -17,9 +17,14 @@ const Navbar = () => {
                 <div className="flex justify-between h-16">
                     {/* Branding - Left Side */}
                     <div className="flex items-center gap-3">
-                        <div className="bg-gradient-to-tr from-brand-600 to-brand-400 p-2 rounded-lg shadow-theme-md">
-                            <Award className="w-6 h-6 text-white" />
-                        </div>
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={onMenuClick}
+                            className="lg:hidden p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors mr-2"
+                        >
+                            <Menu className="w-6 h-6" />
+                        </button>
+
                         <div className="hidden sm:block">
                             <h1 className="text-theme-xl font-bold text-gray-900">
                                 Analytica
@@ -27,8 +32,9 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    {/* Navigation Links - Center (Desktop) */}
-                    <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
+                    {/* Navigation Links - Center (Desktop) - REMOVED since we have Sidebar now */}
+                    <div className="hidden md:flex items-center space-x-1 lg:space-x-4 opacity-0 pointer-events-none w-0 overflow-hidden">
+                        {/* Kept hidden just in case revert is needed, but functionally removed */}
                         {tabs.map((tab) => (
                             <button
                                 key={tab.name}
