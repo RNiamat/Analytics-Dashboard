@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import KeyMetricsCards from "./components/KeyMetricsCards";
 import RefinedFilters from "./components/RefinedFilters";
 import DataTable from "./components/DataTable";
+import DashboardCharts from "./components/DashboardCharts";
 import { FilterProvider } from "./contexts/FilterContext";
 
 const App = () => {
@@ -17,6 +18,9 @@ const App = () => {
 
           {/* Filters positioned above dashboard content */}
           <RefinedFilters />
+
+          {/* Analytics Charts (Static Dummy Data) */}
+          <DashboardCharts />
 
           {/* Data Table */}
           <div className="mt-8">
