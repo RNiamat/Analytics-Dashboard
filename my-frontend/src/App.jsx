@@ -7,13 +7,11 @@ import RefinedFilters from "./components/RefinedFilters";
 import DataTable from "./components/DataTable";
 import { FilterProvider } from "./contexts/FilterContext";
 
-<<<<<<< ours
+
 import { ThemeProvider } from "./contexts/ThemeContext";
-=======
 import NotificationContainer from "./components/NotificationContainer";
 import { useNotification } from "./contexts/NotificationContext";
 import { useEffect } from "react";
->>>>>>> theirs
 
 const App = () => {
   const { addNotification } = useNotification();
