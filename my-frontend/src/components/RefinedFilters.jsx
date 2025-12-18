@@ -80,7 +80,7 @@ const RefinedFilters = () => {
                 setIsOpen(false);
               }}
               style={{ animationDelay: `${index * 50}ms` }}
-              className={`w-full px-4 py-3 text-sm text-left hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 transition-all duration-200 transform hover:scale-[1.02] animate-in slide-in-from-left-1 fade-in ${selected === option ? 'bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 font-medium border-l-4 border-indigo-500' : 'text-gray-700 dark:text-gray-200'
+              className={`w-full px-4 py-3 text-sm text-left hover:bg-linear-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 transition-all duration-200 transform hover:scale-[1.02] animate-in slide-in-from-left-1 fade-in ${selected === option ? 'bg-linear-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 font-medium border-l-4 border-indigo-500' : 'text-gray-700 dark:text-gray-200'
                 } ${index === 0 ? 'rounded-t-xl' : ''} ${index === options.length - 1 ? 'rounded-b-xl' : ''}`}
             >
               <div className="flex items-center justify-between">
@@ -104,7 +104,7 @@ const RefinedFilters = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white transition-all duration-300 ${pulseEffect ? 'animate-pulse scale-110' : ''}`}>
+            <div className={`p-2 rounded-lg bg-linear-to-r from-indigo-500 to-purple-600 text-white transition-all duration-300 ${pulseEffect ? 'animate-pulse scale-110' : ''}`}>
               <Filter className="w-5 h-5" />
             </div>
             <div>
@@ -116,7 +116,7 @@ const RefinedFilters = () => {
           </div>
 
           {/* Active filters badge */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-full animate-in zoom-in duration-300">
+          <div className="flex items-center gap-2 px-3 py-1 bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-full animate-in zoom-in duration-300">
             <TrendingUp className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             <span className="text-sm font-medium text-indigo-700 dark:text-indigo-300">Live Updates</span>
           </div>
@@ -199,7 +199,7 @@ const RefinedFilters = () => {
             </div>
 
             {/* Category Description */}
-            <div className="mt-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-lg border border-indigo-100 dark:border-indigo-900/30">
+            <div className="mt-4 p-4 bg-linear-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-lg border border-indigo-100 dark:border-indigo-900/30">
               <div className="flex items-start gap-3">
                 <Zap className="w-5 h-5 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" />
                 <div>

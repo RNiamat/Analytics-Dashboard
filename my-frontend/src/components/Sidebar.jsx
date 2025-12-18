@@ -6,13 +6,13 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
     const location = useLocation();
 
     const menuItems = [
-        { name: 'Dashboard', icon: Layout, path: '/' },
-        { name: 'Reports', icon: FileText, path: '/reports' },
-    ];
+    { name: 'Dashboard', icon: Layout, path: '/' },
+    { name: 'Reports', icon: FileText, path: '/reports' },
+    { name: 'Users', icon: User, path: '/users' }, // ✅ ADDED
+];
 
     const bottomItems = [
         { name: 'Settings', icon: Settings, path: '/settings' },
-        { name: 'Log Out', icon: LogOut, path: '#', onClick: () => console.log('Log out') },
     ];
 
     return (
@@ -41,7 +41,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
                     {/* Header / Logo */}
                     <div className={`flex items-center h-16 px-4 border-b border-gray-100 dark:border-gray-800 ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
                         <div className="flex items-center gap-3 overflow-hidden">
-                            <div className="bg-gradient-to-tr from-brand-600 to-brand-400 p-2 rounded-lg shrink-0">
+                            <div className="bg-linear-to-tr from-brand-600 to-brand-400 p-2 rounded-lg shrink-0">
                                 <Award className="w-6 h-6 text-white" />
                             </div>
                         </div>
