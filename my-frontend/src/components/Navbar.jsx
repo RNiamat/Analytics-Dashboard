@@ -15,8 +15,10 @@ const Navbar = ({ onMenuClick }) => {
 
     return (
         <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-theme-sm transition-all duration-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
                 <div className="flex justify-between h-16">
+
+
                     {/* Branding - Left Side */}
                     <div className="flex items-center gap-3">
                         {/* Mobile Menu Button */}
@@ -60,6 +62,14 @@ const Navbar = ({ onMenuClick }) => {
 
                     {/* Right Side - Actions */}
                     <div className="flex items-center gap-2 sm:gap-4">
+                        {/* Theme Toggle */}
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-brand-500/10"
+                        >
+                            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                        </button>
+                        
                         {/* Notifications */}
                         <button className="relative p-2 text-gray-500 hover:text-gray-700 transition-colors rounded-full hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-brand-500/10">
                             <Bell className="w-5 h-5" />
