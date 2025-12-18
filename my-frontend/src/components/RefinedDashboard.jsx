@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import KeyMetricsCards from "./components/KeyMetricsCards";
-import RefinedFilters from "./components/RefinedFilters";
+import KeyMetricsCards from "./KeyMetricsCards";
+import RefinedFilters from "./RefinedFilters";
+import DashboardCharts from "./DashboardCharts";
 import AnimationsDemo from './AnimationsDemo';
 
 const RefinedDashboard = () => {
@@ -16,13 +17,16 @@ const RefinedDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-12">
       {/* Filters Section */}
       <RefinedFilters onFilterChange={handleFilterChange} />
-      
+
       {/* Key Metrics Cards */}
       <KeyMetricsCards />
-      
+
+      {/* Analytics Charts */}
+      <DashboardCharts filters={filters} />
+
       {/* Animations Demo */}
       <AnimationsDemo />
     </div>

@@ -28,7 +28,7 @@ const Navbar = ({ onMenuClick }) => {
                         </button>
 
                         <div className="hidden sm:block">
-                            <h1 className="text-theme-xl font-bold text-gray-900">
+                            <h1 className="text-theme-xl font-bold text-gray-900 dark:text-white">
                                 Analytica
                             </h1>
                         </div>

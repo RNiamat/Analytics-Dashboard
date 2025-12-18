@@ -9,10 +9,10 @@ const icons = {
 };
 
 const styles = {
-    success: "border-green-500 bg-green-50 text-green-900",
-    error: "border-red-500 bg-red-50 text-red-900",
-    warning: "border-yellow-500 bg-yellow-50 text-yellow-900",
-    info: "border-blue-500 bg-blue-50 text-blue-900",
+    success: "border-green-500 bg-green-50 text-green-900 dark:bg-green-900/30 dark:text-green-100 dark:border-green-600",
+    error: "border-red-500 bg-red-50 text-red-900 dark:bg-red-900/30 dark:text-red-100 dark:border-red-600",
+    warning: "border-yellow-500 bg-yellow-50 text-yellow-900 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-600",
+    info: "border-blue-500 bg-blue-50 text-blue-900 dark:bg-blue-900/30 dark:text-blue-100 dark:border-blue-600",
 };
 
 const NotificationItem = ({ notification, removeNotification }) => {
@@ -26,6 +26,7 @@ const NotificationItem = ({ notification, removeNotification }) => {
         animate-in slide-in-from-right fade-in duration-300
         ${styles[type] || styles.info}
         min-w-[300px] max-w-md
+        backdrop-blur-sm
       `}
             role="alert"
         >
@@ -37,7 +38,7 @@ const NotificationItem = ({ notification, removeNotification }) => {
             </div>
             <button
                 onClick={() => removeNotification(id)}
-                className="flex-shrink-0 ml-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 hover:bg-black/5 focus:ring-2 focus:ring-black/5 transition-colors"
+                className="flex-shrink-0 ml-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 hover:bg-black/5 dark:hover:bg-white/10 focus:ring-2 focus:ring-black/5 dark:focus:ring-white/10 transition-colors"
                 aria-label="Dismiss"
             >
                 <X className="w-4 h-4 opacity-70" />

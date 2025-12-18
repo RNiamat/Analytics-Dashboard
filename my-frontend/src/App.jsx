@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import KeyMetricsCards from "./components/KeyMetricsCards";
 import RefinedFilters from "./components/RefinedFilters";
 import DataTable from "./components/DataTable";
+import DashboardCharts from "./components/DashboardCharts";
 import { FilterProvider } from "./contexts/FilterContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import NotificationContainer from "./components/NotificationContainer";
@@ -12,9 +13,13 @@ import { useNotification } from "./contexts/NotificationContext";
 
 const App = () => {
   const { addNotification } = useNotification();
+  const hasNotified = useRef(false);
 
   useEffect(() => {
-    addNotification('info', 'Welcome to the Dashboard! 🚀');
+    if (!hasNotified.current) {
+      addNotification('info', 'Welcome to the Dashboard! 🚀');
+      hasNotified.current = true;
+    }
   }, [addNotification]);
 
   const checkThreshold = () => {
@@ -41,6 +46,9 @@ const App = () => {
 
             {/* Filters */}
             <RefinedFilters />
+
+            {/* Analytics Charts (Static Dummy Data) */}
+            <DashboardCharts />
 
             {/* Data Table */}
             <div className="mt-8">
