@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Brand Colors (Indigo) */
@@ -25,10 +26,10 @@
   --color-success-700: #047857;
 
   /* Typography */
-  --text-theme-xs: 0.75rem; 
+  --text-theme-xs: 0.75rem;
   --text-theme-sm: 0.875rem;
   --text-theme-xl: 1.25rem;
-  
+
   /* Shadows */
   --shadow-theme-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-theme-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -38,6 +39,8 @@
 
 @layer base {
   body {
-    @apply relative text-base font-normal bg-gray-50 font-sans;
+    @apply relative text-base font-normal bg-gray-50 dark:bg-gray-950 dark:text-gray-100 font-sans transition-colors duration-300;
   }
+
+
 }

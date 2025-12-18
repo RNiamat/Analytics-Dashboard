@@ -30,7 +30,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
                 onMouseEnter={() => setIsCollapsed(false)}
                 onMouseLeave={() => setIsCollapsed(true)}
                 className={`
-          fixed top-0 left-0 z-50 h-screen bg-white border-r border-gray-200 shadow-theme-lg transition-all duration-300 ease-in-out
+          fixed top-0 left-0 z-50 h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 shadow-theme-lg transition-all duration-300 ease-in-out
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:translate-x-0 lg:sticky lg:top-0 lg:shadow-none
           ${isCollapsed ? 'lg:w-20' : 'lg:w-72'}
@@ -39,7 +39,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
                 <div className="flex flex-col h-full">
 
                     {/* Header / Logo */}
-                    <div className={`flex items-center h-16 px-4 border-b border-gray-100 ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
+                    <div className={`flex items-center h-16 px-4 border-b border-gray-100 dark:border-gray-800 ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
                         <div className="flex items-center gap-3 overflow-hidden">
                             <div className="bg-gradient-to-tr from-brand-600 to-brand-400 p-2 rounded-lg shrink-0">
                                 <Award className="w-6 h-6 text-white" />
@@ -66,8 +66,8 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
                                     className={`
                     flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group
                     ${isActive
-                                            ? 'bg-brand-50 text-brand-600'
-                                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                            ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400'
+                                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
                                         }
                     ${isCollapsed ? 'justify-center' : ''}
                   `}
@@ -97,7 +97,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
                     </nav>
 
                     {/* Bottom Section: Settings, Logout, User Profile */}
-                    <div className="p-3 border-t border-gray-100 space-y-1">
+                    <div className="p-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
                         {bottomItems.map((item) => {
                             const isLogOut = item.name === 'Log Out';
                             const isActive = !isLogOut && location.pathname === item.path;
@@ -111,10 +111,10 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsCollapsed })
                                     className={`
                         flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group w-full
                         ${isLogOut
-                                            ? 'text-error-600 hover:bg-error-50'
+                                            ? 'text-error-600 dark:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/20'
                                             : isActive
-                                                ? 'bg-brand-50 text-brand-600'
-                                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                                ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400'
+                                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
                                         }
                         ${isCollapsed ? 'justify-center' : ''}
                     `}
