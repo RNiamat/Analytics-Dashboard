@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, MapPin, Link as LinkIcon, Calendar } from 'lucide-react';
 
@@ -25,9 +26,9 @@ const Profile = () => {
                             <p className="text-sm text-gray-500 dark:text-gray-400">{userData.role}</p>
                         </div>
                         <div className="ml-auto mb-2">
-                            <button className="px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm">
+                            <Link to="/settings" className="px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm inline-block">
                                 Edit Profile
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -81,7 +82,7 @@ const Profile = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 };
 

@@ -10,6 +10,25 @@ const Settings = () => {
         { id: 'security', label: 'Security', icon: Shield },
     ];
 
+    const [formData, setFormData] = useState({
+        firstName: 'Rafia',
+        lastName: 'Niamat',
+        email: 'rafia@example.com',
+        bio: 'Admin of Analytica Dashboard.'
+    });
+    const [isSaving, setIsSaving] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    const handleSave = () => {
+        setIsSaving(true);
+        // Simulate API call
+        setTimeout(() => {
+            setIsSaving(false);
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
+        }, 800);
+    };
+
     return (
         <div className="space-y-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Account Settings</h1>
@@ -51,19 +70,39 @@ const Settings = () => {
                                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First Name</label>
-                                        <input type="text" defaultValue="Rafia" className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm h-10 px-3 border" />
+                                        <input
+                                            type="text"
+                                            value={formData.firstName}
+                                            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                                            className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm h-10 px-3 border"
+                                        />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Last Name</label>
-                                        <input type="text" defaultValue="Niamat" className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm h-10 px-3 border" />
+                                        <input
+                                            type="text"
+                                            value={formData.lastName}
+                                            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                            className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm h-10 px-3 border"
+                                        />
                                     </div>
                                     <div className="sm:col-span-2">
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
-                                        <input type="email" defaultValue="rafia@example.com" className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm h-10 px-3 border" />
+                                        <input
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm h-10 px-3 border"
+                                        />
                                     </div>
                                     <div className="sm:col-span-2">
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Bio</label>
-                                        <textarea rows={3} className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm p-3 border" defaultValue="Admin of Analytica Dashboard."></textarea>
+                                        <textarea
+                                            rows={3}
+                                            className="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-brand-500 focus:border-brand-500 text-sm p-3 border"
+                                            value={formData.bio}
+                                            onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                                        ></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -99,10 +138,30 @@ const Settings = () => {
                         )}
 
                         {/* Save Button */}
-                        <div className="pt-6 mt-6 border-t border-gray-100 dark:border-gray-700 flex justify-end">
-                            <button className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
-                                <Save className="w-4 h-4" />
-                                Save Changes
+                        <div className="pt-6 mt-6 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                            <div>
+                                {showSuccess && (
+                                    <span className="text-sm text-green-600 font-medium animate-in fade-in slide-in-from-left-2">
+                                        Changes saved successfully!
+                                    </span>
+                                )}
+                            </div>
+                            <button
+                                onClick={handleSave}
+                                disabled={isSaving}
+                                className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 disabled:opacity-70 disabled:cursor-not-allowed"
+                            >
+                                {isSaving ? (
+                                    <>
+                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                        Saving...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Save className="w-4 h-4" />
+                                        Save Changes
+                                    </>
+                                )}
                             </button>
                         </div>
 
